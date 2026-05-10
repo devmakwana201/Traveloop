@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48">
+  <!-- Globe icon -->
+  <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+  <ellipse cx="24" cy="24" rx="11" ry="20" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+  <line x1="4" y1="18" x2="44" y2="18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <line x1="4" y1="24" x2="44" y2="24" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <line x1="4" y1="30" x2="44" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <!-- Small plane dot -->
+  <circle cx="24" cy="24" r="4" fill="#7dd3fc"/>
+  <!-- Wordmark -->
+  <text x="54" y="32" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="800" fill="white" letter-spacing="-0.5">Traveloop</text>
+</svg>

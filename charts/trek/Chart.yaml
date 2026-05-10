@@ -1,0 +1,6 @@
+apiVersion: v2
+name: trek
+version: 3.0.17
+description: Minimal Helm chart for TREK app
+appVersion: "3.0.17"
+# Traveloop 2026
