@@ -1,7 +1,13 @@
 import Database from 'better-sqlite3';
 
+/**
+ * Initializes the SQLite database schema by creating all required tables and indexes.
+ * This function should be called during database initialization before migrations.
+ * @param db - The better-sqlite3 database connection instance.
+ */
 function createTables(db: Database.Database): void {
   db.exec(`
+    -- Core user and authentication tables
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       username TEXT UNIQUE NOT NULL,
@@ -50,6 +56,7 @@ function createTables(db: Database.Database): void {
       UNIQUE(user_id, key)
     );
 
+    -- Core trip management tables
     CREATE TABLE IF NOT EXISTS trips (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -75,6 +82,7 @@ function createTables(db: Database.Database): void {
       UNIQUE(trip_id, day_number)
     );
 
+    -- Places, categories, and tagging system
     CREATE TABLE IF NOT EXISTS categories (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
@@ -125,6 +133,7 @@ function createTables(db: Database.Database): void {
       PRIMARY KEY (place_id, tag_id)
     );
 
+    -- Itinerary and scheduling tables
     CREATE TABLE IF NOT EXISTS day_assignments (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       day_id INTEGER NOT NULL REFERENCES days(id) ON DELETE CASCADE,
@@ -137,6 +146,7 @@ function createTables(db: Database.Database): void {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    -- Trip resources: Packing, photos, and files
     CREATE TABLE IF NOT EXISTS packing_items (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       trip_id INTEGER NOT NULL REFERENCES trips(id) ON DELETE CASCADE,
@@ -213,6 +223,7 @@ function createTables(db: Database.Database): void {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    -- Settings and financial tables
     CREATE TABLE IF NOT EXISTS app_settings (
       key TEXT PRIMARY KEY,
       value TEXT
@@ -405,6 +416,7 @@ function createTables(db: Database.Database): void {
   `);
 
   db.exec(`
+    -- Database indexes for query optimization
     CREATE INDEX IF NOT EXISTS idx_places_trip_id ON places(trip_id);
     CREATE INDEX IF NOT EXISTS idx_places_category_id ON places(category_id);
     CREATE INDEX IF NOT EXISTS idx_days_trip_id ON days(trip_id);
@@ -431,6 +443,7 @@ function createTables(db: Database.Database): void {
     );
     CREATE INDEX IF NOT EXISTS idx_assignment_participants_assignment ON assignment_participants(assignment_id);
 
+    -- System audit and notification tracking
     CREATE TABLE IF NOT EXISTS audit_log (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
