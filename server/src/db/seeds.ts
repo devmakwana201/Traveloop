@@ -139,6 +139,7 @@ function seedAddons(db: Database.Database): void {
   }
 }
 
+
 function runSeeds(db: Database.Database): void {
   seedAdminAccount(db);
   seedCategories(db);

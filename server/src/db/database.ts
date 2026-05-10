@@ -21,10 +21,12 @@ const dbPath = path.join(dataDir, 'travel.db');
 let _db: Database.Database | null = null;
 
 /**
+ * 
  * Initializes the SQLite database connection.
  * Closes any existing connection before opening a new one.
  * Sets necessary PRAGMAs for performance and foreign key constraints.
  * Also runs schema creation, migrations, and seeds.
+ * 
  */
 function initDb(): void {
   // If a connection already exists, safely close it first
